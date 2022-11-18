@@ -1,3 +1,5 @@
+name: Send Weather Forecast
+
 on:
   schedule:
     # Runs "at minute 55 past every hour" (see https://crontab.guru)
@@ -7,7 +9,7 @@ on:
       - "main"
 
 jobs:
-  build:
+  send-weather-forecast:
     runs-on: ubuntu-latest
 
     steps:
