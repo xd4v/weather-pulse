@@ -42,6 +42,17 @@ def build_iso_dates():
     end = start + timedelta(days=1)
     return start.strftime('%Y-%m-%d'), end.strftime('%Y-%m-%d')
 
+def format_time(time):
+    day, hour = time.split('T')
+
+    start, end = build_iso_dates()
+
+    if day == start:
+        day = 'Today'
+    elif day == end:
+        day = 'Tomorrow'
+
+    return day, hour
 
 def format(response):
     data = response.json()
@@ -79,10 +90,10 @@ def format(response):
         cloud = cloudcover[i]
         preci = precipitations[i]
 
-
+        day, hour = format_time(t)
         weather_report += f'''
         <tr>
-            <td style="min-width: 40px">{t}</td>
+            <td style="min-width: 40px">{day} at {hour}</td>
             <td style="min-width: 40px">{temp}{temp_unit}</td>
             <td style="min-width: 40px">{decode_cloud_cover(cloud, preci)}</td>
             <td style="min-width: 40px">{cloud}{cloudcover_unit}</dh
