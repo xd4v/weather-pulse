@@ -39,7 +39,7 @@ def build_url(latitude, longitude, start_date, end_date):
 
 def build_iso_dates():
     start = datetime.today()
-    end = start + timedelta(days=2)
+    end = start + timedelta(days=1)
     return start.strftime('%Y-%m-%d'), end.strftime('%Y-%m-%d')
 
 
@@ -57,12 +57,13 @@ def format(response):
     cloudcover = hourly['cloudcover']
     precipitations = hourly['precipitation']
     
-    weather_report = '<div>'
+    weather_report = '<div style="width: 100%; text-align: center;">'
 
 
     weather_report += '<table>'
     weather_report += '''
     <tr>
+        <th></th>
         <th>temperature</th>
         <th>emoji</th>
         <th>cloud cover</th>
@@ -81,6 +82,7 @@ def format(response):
 
         weather_report += f'''
         <tr>
+            <th>{i}</th>
             <th>{temp}{temp_unit}</th>
             <th>{decode_cloud_cover(cloud, preci)}</th>
             <th>{cloud}{cloudcover_unit}</th
