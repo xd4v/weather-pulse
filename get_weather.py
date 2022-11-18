@@ -68,7 +68,7 @@ def format(response):
     cloudcover = hourly['cloudcover']
     precipitations = hourly['precipitation']
     
-    weather_report = '<div style="width: 100%; text-align: center;">'
+    weather_report = '<div style="width: 100%; text-align: left;">'
 
 
     weather_report += '<table>'
