@@ -82,13 +82,13 @@ def format(response):
 
         weather_report += f'''
         <tr>
-            <th>{i}</th>
-            <th>{temp}{temp_unit}</th>
-            <th>{decode_cloud_cover(cloud, preci)}</th>
-            <th>{cloud}{cloudcover_unit}</th
-            <th>{preci}{precipitation_unit}</th>
-            <th>{windspeed}{windspeed_unit}</th>
-            <th>{humidity}{humidity_unit}</th>
+            <td style="min-width: 40px">{t}</td>
+            <td style="min-width: 40px">{temp}{temp_unit}</td>
+            <td style="min-width: 40px">{decode_cloud_cover(cloud, preci)}</td>
+            <td style="min-width: 40px">{cloud}{cloudcover_unit}</dh
+            <td style="min-width: 40px">{preci}{precipitation_unit}</td>
+            <td style="min-width: 40px">{windspeed}{windspeed_unit}</td>
+            <td style="min-width: 40px">{humidity}{humidity_unit}</td>
 
         </tr>
         '''
