@@ -76,11 +76,11 @@ def format(response):
         <p>
             Today's weather:
             <ul>
-                <li>Min temperature: {temp_min_air}{temp_unit} (felt: {temp_min_felt}{temp_unit})</li>
-                <li>Max temperature: {temp_max_air}{temp_unit} (felt: {temp_max_felt}{temp_unit})</li>
-                <li>Total rain: {total_preci}{precipitation_unit}</li>
-                <li>Sunrise: {sunrise.split('T')[1]}</li>
-                <li>Sunset: {sunset.split('T')[1]}</li>
+                <li>Min temperature: <b>{temp_min_air}</b>{temp_unit} (felt: <b>{temp_min_felt}</b>{temp_unit})</li>
+                <li>Max temperature: <b>{temp_max_air}</b>{temp_unit} (felt: <b>{temp_max_felt}</b>{temp_unit})</li>
+                <li>Total rain: <b>{total_preci}</b>{precipitation_unit}</li>
+                <li>Sunrise: <b>{sunrise.split('T')[1]}</b></li>
+                <li>Sunset: <b>{sunset.split('T')[1]}</b></li>
             </ul>
         </p>
     '''
@@ -117,7 +117,7 @@ def format(response):
         day, hour = format_time(t)
         weather_report += f'''
         <tr>
-            <td style="min-width: 40px">{day} at {hour}</td>
+            <td style="min-width: 100px">{day} at {hour}</td>
             <td style="min-width: 40px">{temp}{temp_unit}</td>
             <td style="min-width: 40px">{decode_cloud_cover(cloud, preci)}</td>
             <td style="min-width: 40px">{cloud}{cloudcover_unit}</dh
