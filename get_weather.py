@@ -102,7 +102,7 @@ def format(response):
         <th>temperature</th>
         <th></th>
         <th>cloud cover</th>
-        <th>rain</th>
+        <th>precipitation</th>
         <th>windspeed</th>
         <th>humidity</th>
     </tr>
@@ -117,7 +117,7 @@ def format(response):
         day, hour = format_time(t)
         weather_report += f'''
         <tr>
-            <td style="min-width: 100px">{day} at {hour}</td>
+            <td style="min-width: 100px">{day}\n{hour}</td>
             <td style="min-width: 40px">{temp}{temp_unit}</td>
             <td style="min-width: 40px">{decode_cloud_cover(cloud, preci)}</td>
             <td style="min-width: 40px">{cloud}{cloudcover_unit}</dh
