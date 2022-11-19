@@ -31,8 +31,9 @@ def build_url(latitude, longitude, start_date, end_date):
     url += f'&longitude={longitude}'
     url += f'&start_date={start_date}'
     url += f'&end_date={end_date}'
-    url += '&hourly=temperature_2m,relativehumidity_2m,windspeed_10m,cloudcover,precipitation&timezone=Europe%2FBerlin'
-
+    url += '&hourly=temperature_2m,relativehumidity_2m,windspeed_10m,cloudcover,precipitation'
+    url += '&daily=temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_sum,sunrise,sunset'
+    url += '&timezone=Europe%2FBerlin'
 
     return url
 
@@ -59,8 +60,34 @@ def format(response):
     temp_unit, humidity_unit, windspeed_unit, cloudcover_unit, precipitation_unit = itemgetter(
         'temperature_2m', 'relativehumidity_2m', 'windspeed_10m', 'cloudcover', 'precipitation'
     )(data['hourly_units'])
-    hourly = data['hourly']
+    
+    # today's summary
+    daily = data['daily']
+    temp_min_air = daily['temperature_2m_min'][0]
+    temp_max_air = daily['temperature_2m_max'][0]
+    temp_min_felt = daily['apparent_temperature_min'][0]
+    temp_max_felt = daily['apparent_temperature_max'][0]
+    total_preci = daily['precipitation_sum'][0]
+    sunrise = daily['sunrise'][0]
+    sunset = daily['sunset'][0]
+    
+    weather_report = '<div style="width: 100%; text-align: left;">'
+    weather_report += f'''
+        <p>
+            Today's weather:
+            <ul>
+                <li>Min temperature: {temp_min_air}{temp_unit} (felt: {temp_min_felt}{temp_unit})</li>
+                <li>Max temperature: {temp_max_air}{temp_unit} (felt: {temp_max_felt}{temp_unit})</li>
+                <li>Total rain: {total_preci}{precipitation_unit}</li>
+                <li>Sunrise: {sunrise.split('T')[1]}</li>
+                <li>Sunset: {sunset.split('T')[1]}</li>
+            </ul>
+        </p>
+    '''
 
+    # table showing two next days
+
+    hourly = data['hourly']
     time = hourly['time']
     temperatures = hourly['temperature_2m']
     humidities = hourly['relativehumidity_2m']
@@ -68,9 +95,6 @@ def format(response):
     cloudcover = hourly['cloudcover']
     precipitations = hourly['precipitation']
     
-    weather_report = '<div style="width: 100%; text-align: left;">'
-
-
     weather_report += '<table>'
     weather_report += '''
     <tr>
@@ -107,6 +131,7 @@ def format(response):
     weather_report += '</table>'
     weather_report += '</div>'
 
+    print(weather_report)
     return weather_report
 
 
