@@ -117,7 +117,7 @@ def format(response):
         day, hour = format_time(t)
         weather_report += f'''
         <tr>
-            <td style="min-width: 100px">{day}\n{hour}</td>
+            <td style="min-width: 100px">{day}<br>{hour}</td>
             <td style="min-width: 40px">{temp}{temp_unit}</td>
             <td style="min-width: 40px">{decode_cloud_cover(cloud, preci)}</td>
             <td style="min-width: 40px">{cloud}{cloudcover_unit}</dh
